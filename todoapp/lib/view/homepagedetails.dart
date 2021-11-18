@@ -4,6 +4,9 @@ import 'package:todoapp/common_widgets/subtitlewidget.dart';
 import 'package:todoapp/common_widgets/tasklistview.dart';
 import 'package:todoapp/common_widgets/titlewidgets.dart';
 import 'package:todoapp/constants/colors.dart';
+import 'package:todoapp/db_services/notedb.dart';
+import 'package:todoapp/model/note_model.dart';
+import 'dart:math';
 
 class HomePageDetails extends StatefulWidget {
   const HomePageDetails({Key? key}) : super(key: key);
@@ -13,6 +16,33 @@ class HomePageDetails extends StatefulWidget {
 }
 
 class _HomePageDetailsState extends State<HomePageDetails> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // insertData();
+    getDatabase();
+   
+  }
+
+
+
+
+List<NoteModel> noteDb = [];
+  
+
+   Future getDatabase()async{
+      noteDb =await NoteDb.db.getALLNotes();
+      print(noteDb[0].title);
+       setState(() {
+        
+      });
+      return noteDb;
+     
+   }
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -73,7 +103,7 @@ class _HomePageDetailsState extends State<HomePageDetails> {
                ),
              ),
              
-             TaskListView('title', 'subtitle'),
+             TaskListView(noteDb),
 
 
                const SizedBox(
@@ -89,7 +119,7 @@ class _HomePageDetailsState extends State<HomePageDetails> {
                  ],
                ),
              ),
-               TaskListView('title', 'subtitle'),
+                  TaskListView(noteDb),
       ],
     );
   }

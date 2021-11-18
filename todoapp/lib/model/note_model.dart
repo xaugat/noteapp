@@ -1,41 +1,53 @@
 
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 
-final String noteid = 'id';
-final String notetitle = 'title';
-final String notedescription = 'description';
-final String notestatus = 'done';
-final String notedate = 'date';
+
 
 class NoteModel{
-  int? id;
-  String? title;
-  String? description;
-  String? date;
-  String? status;
+ int? id;
+ String? title;
+ String? description;
+ String? reminderdate;
+ int? done;
 
-  
+ NoteModel({
+   @required this.id,
+   @required this.title,
+   @required this.description,
+   @required this.reminderdate,
+   @required this.done
 
-    Map<String, Object?> toMap() {
-    var map = <String, Object?>{
-      notetitle: title,
-      notedescription: description,
-      notedate: date,
-      notestatus: status
-    };
-    if (id != null) {
-      map[noteid] = id;
-    }
-    return map;
-  }
+ });
 
-NoteModel();
 
-  NoteModel.fromMap(Map<dynamic, dynamic> map) {
-    id = map[noteid];
-    title = map[notetitle];
-    date = map[notedate];
-    status = map[notedate];
-  }
+ factory NoteModel.fromMap(Map<String, dynamic>json)=> NoteModel(
+   id: json['id'],
+   title: json['title'],
+   description: json['description'],
+   reminderdate: json['reminderdate'],
+   done: json['done'],
+   
+   );
+   Map<String, dynamic> toMap()=> {
+     "id": id,
+     "title": title,
+     "description": description,
+     "reminderdate": reminderdate,
+     "done": done
 
+   };
+
+
+}
+
+NoteModel notefromjson(String str){
+  final jsonData = json.decode(str);
+  return NoteModel.fromMap(jsonData);
+}
+
+String noteToJson(NoteModel noteModel){
+  final dyn = noteModel.toMap();
+  return json.encode(dyn);
 }

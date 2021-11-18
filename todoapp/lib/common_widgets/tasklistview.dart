@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:todoapp/common_widgets/subtitlewidget.dart';
 import 'package:todoapp/common_widgets/titlewidgets.dart';
 import 'package:todoapp/constants/colors.dart';
+import 'package:todoapp/model/note_model.dart';
 class TaskListView extends StatelessWidget {
-  String title;
-  String subtitle;
-  TaskListView(this.title, this.subtitle,{ Key? key }) : super(key: key);
+  List<NoteModel> data;
+  TaskListView(this.data, { Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    print(data);
     return  Container(
                 height: 200,
                 width: MediaQuery.of(context).size.width,
                 child: ListView.builder(
+                  
                   scrollDirection: Axis.horizontal,
-                  itemCount: 10,
+                  itemCount: data == null? 0: data.length,
                   itemBuilder: (BuildContext context, index){
                     return  Container(
 
@@ -26,8 +28,9 @@ class TaskListView extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            AppTitle('title'),
-                            AppSubTitle('subtitle'),
+                            AppTitle(data[index].title.toString()),
+                            AppSubTitle(data[index].description.toString()),
+                            Text(data[index].done == 0? 'pending': 'done')
                             
                           ],
                         ),

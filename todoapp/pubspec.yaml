@@ -38,6 +38,8 @@ dependencies:
   curved_navigation_bar:
   flutter_datetime_picker:
   sqflite:
+  path_provider:
+  flutter_math:
 
 dev_dependencies:
   flutter_test:

@@ -15,6 +15,10 @@ class AddNotesPage extends StatefulWidget {
 class _AddNotesPageState extends State<AddNotesPage> {
 
    String datevalue = 'Select date and time';
+
+   TextEditingController noteTitleController = TextEditingController();
+   TextEditingController noteDescController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
      final notesProvider = context.watch<NotesProvider>();
@@ -40,6 +44,7 @@ class _AddNotesPageState extends State<AddNotesPage> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
+                        controller: noteTitleController,
                         decoration: InputDecoration(hintText: 'enter note title..'),
                       ),
                     )),
@@ -49,6 +54,7 @@ class _AddNotesPageState extends State<AddNotesPage> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
+                            controller: noteDescController,
                           keyboardType: TextInputType.multiline,
   maxLines: 10,
                         decoration: InputDecoration(hintText: 'enter note detail..'),
@@ -100,7 +106,13 @@ class _AddNotesPageState extends State<AddNotesPage> {
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
                       
-                      onPressed: (){}, child: Row(
+                      onPressed: (){
+                       notesProvider.insertData(noteTitleController.text, noteDescController.text,
+                       datevalue.toString()
+                       ); 
+
+
+                      }, child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
                           Text('Save'),
