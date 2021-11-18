@@ -8,6 +8,18 @@ import 'package:todoapp/model/note_model.dart';
 class NotesProvider extends ChangeNotifier{
 
 
+
+List<NoteModel> noteDb = [];
+  
+
+   Future getDatabase()async{
+      noteDb =await NoteDb.db.getALLNotes();
+      print(noteDb[0].title);
+      notifyListeners();
+     
+   }
+
+
 Future insertData(title, desc, date)async{
   
   var rng = Random();

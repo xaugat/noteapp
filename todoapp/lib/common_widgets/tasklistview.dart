@@ -19,7 +19,6 @@ class TaskListView extends StatelessWidget {
                   itemCount: data == null? 0: data.length,
                   itemBuilder: (BuildContext context, index){
                     return  Container(
-
                       height: 180,
                       width: 180,
                       child:  Card(color: appcolor,
