@@ -14,7 +14,7 @@ List<NoteModel> noteDb = [];
 
    Future getDatabase()async{
       noteDb =await NoteDb.db.getALLNotes();
-      print(noteDb[0].title);
+      // print(noteDb[0].title);
       notifyListeners();
      
    }
@@ -32,6 +32,12 @@ Future insertData(title, desc, date)async{
       print('data sucessfully inserted');
       
       notifyListeners();
+
+}
+
+Future deleteNote(id)async{
+  NoteDb.db.deleteNotes(id);
+  
 
 }
 

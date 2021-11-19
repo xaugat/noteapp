@@ -19,7 +19,7 @@ class NoteDb{
           "id INTEGER PRIMARY KEY,"
           "title TEXT,"
           "description TEXT,"
-          "reminderdate TEXT as ISO8601,"
+          "reminderdate TEXT,"
           "done bool"
           ")");
     });
@@ -46,6 +46,19 @@ getALLNotes()async{
   return list;
 
 }
+
+updateNotes(int id, NoteModel newNote)async{
+  final db = await database;
+  var res = await db.update("Notes", newNote.toMap(), where: "id = ?", whereArgs: [newNote.id] );
+  return res;
+
+}
+
+deleteNotes(int id) async {
+    final db = await database;
+  db.delete("Notes", where: "id = ?", whereArgs: [id]);
+  print("$id deleted");
+  }
   
 }
 

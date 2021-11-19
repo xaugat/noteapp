@@ -40,6 +40,7 @@ dependencies:
   sqflite:
   path_provider:
   flutter_math:
+  intl:
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/src/provider.dart';
 import 'package:todoapp/common_widgets/normaltitle.dart';
 import 'package:todoapp/common_widgets/titlewidgets.dart';
@@ -73,12 +74,23 @@ class _AddNotesPageState extends State<AddNotesPage> {
                               Text(datevalue),
                               IconButton(icon: const Icon(Icons.date_range),
                               onPressed: (){
+
+                            // String now = DateFormat("yyyy-MM-dd").format(DateTime.now());
+
+    //                      final TimeOfDay? result =
+    //     await showTimePicker(context: context, initialTime: TimeOfDay.now());
+    //   final resultdate =  await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(2000), lastDate: DateTime(2200));
+    // if (result != null) {
+    //   setState(() {
+         
+    //     datevalue = resultdate.toString()+  result.format(context) ;
+    //   });
+    // }
                              
                                 DatePicker.showDateTimePicker(context,
                                 showTitleActions: true,
                                 currentTime: DateTime.now(),
                                 locale: LocaleType.en
-                                
                                 
                                 ).then((value) => {
                                   print(value.toString()),

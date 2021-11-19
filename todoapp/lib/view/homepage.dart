@@ -36,6 +36,7 @@ final List<Widget> _children =const [
     
 
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       resizeToAvoidBottomInset: false,
       drawer: Drawer(
         
